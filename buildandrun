@@ -1,0 +1,33 @@
+
+# Right now we just check if we have 1 argument and its "all"
+# It makes more sense to iterate over arguments and check if one of them is "all"
+# because then it would be easier to add new options
+
+if [ $# -eq 1 ]
+	then
+	if [ $1 == "all" ]
+	then
+		cd glfw-3.3.6
+		make clean
+		make
+		cd ..
+	fi
+fi
+
+g++ -g\
+	main.cpp\
+	shader.cpp\
+	renderer.cpp\
+	text-renderer.cpp\
+	grid.cpp\
+	array.cpp\
+	file.cpp\
+	dependencies/glad/src/glad.c\
+	dependencies/glfw-3.3.6/src/libglfw3.a\
+	-Idependencies/glad/include\
+	-Idependencies/glfw-3.3.6/include\
+	-Idependencies/glm\
+	-lX11\
+	-ldl\
+	-pthread\
+	&& ./a.out
